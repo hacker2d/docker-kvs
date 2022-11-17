@@ -2,17 +2,17 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_USER = "yuichi110"
-    BUILD_HOST = "root@10.149.245.115"
-    PROD_HOST = "root@10.149.245.116"
+    BUILD_HOST = "root@192.168.1.12"
+    PROD_HOST = "root@192.168.1.15"
     BUILD_TIMESTAMP = sh(script: "date +%Y%m%d-%H%M%S", returnStdout: true).trim()
   }
   stages {
-    stage('Pre Check') {
-      steps {
-        sh "test -f ~/.docker/config.json"
-        sh "cat ~/.docker/config.json | grep docker.io"
-      }
-    }
+    // stage('Pre Check') {
+    //   steps {
+    //     sh "test -f ~/.docker/config.json"
+    //     sh "cat ~/.docker/config.json | grep docker.io"
+    //   }
+    // }
     stage('Build') {
       steps {
         sh "cat docker-compose.build.yml"
